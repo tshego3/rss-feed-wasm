@@ -1,0 +1,26 @@
+[
+  {
+    "id": 0,
+    "url": "https://techcrunch.com/feed/"
+  },
+  {
+    "id": 1,
+    "url": "https://feeds.feedburner.com/hypebeast/feed/"
+  },
+  {
+    "id": 2,
+    "url": "https://feeds.24.com/articles/news24/TopStories/rss"
+  },
+  {
+    "id": 3,
+    "url": "https://protonmail.com/blog/feed/"
+  },
+  {
+    "id": 4,
+    "url": "https://feeds.feedburner.com/TheHackersNews"
+  },
+  {
+    "id": 5,
+    "url": "https://www.wired.com/feed/rss"
+  }
+]

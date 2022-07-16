@@ -2,6 +2,8 @@
 @page "/{Id:int}"
 
 @using System.Xml
+@using System.Net.Http
+@using System.Net.Http.Headers
 @inject HttpClient Http
 @inject IJSRuntime JSRuntime
 
@@ -30,7 +32,7 @@ else
 
     private RssFeedModel[]? RssFeeds { get; set; }
     private RssFeedModel? RssFeed { get; set; }
-    private MemoryStream memoryStream { get; set; }
+    private MemoryStream? memoryStream { get; set; }
     private XmlDocument? _XmlDocument = new XmlDocument();
     private XmlElement? _XmlElement { get; set; }
     private XmlNodeList? _XmlNodeList { get; set; }
@@ -42,9 +44,11 @@ else
 
         var request = new HttpRequestMessage(HttpMethod.Get, RssFeed.Url);
         request.SetBrowserRequestMode(BrowserRequestMode.NoCors);
-        request.SetBrowserRequestCache(BrowserRequestCache.Default); //optional
+        request.SetBrowserRequestCache(BrowserRequestCache.NoCache);
         var response = await Http.SendAsync(request);
-         var content = await response.Content.ReadAsStringAsync();
+        var content = await response.Content.ReadAsStringAsync();
+        Console.WriteLine(content);
+        //Http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/xml"));
         //var stream = await Http.GetStreamAsync(RssFeed.Url);
 
         //_XmlDocument.Load(RssFeed.Url);

@@ -1,0 +1,1 @@
+D:\Users\source\repos\rss-feed-wasm\rss-feed-wasm\obj\Release\net6.0\browser-wasm\PubTmp\Out\web.config
