@@ -11,13 +11,13 @@
         <ChildContent>
             <div class="row justify-content-start align-items-center">
                 <div class="col-5 d-flex align-items-center">
-                    <RadzenSidebarToggle Click="@(args => { IsSidebarExpanded = !IsSidebarExpanded; bodyExpanded = !bodyExpanded; })" />
+                    <RadzenSidebarToggle Click="@(args => { IsSidebarExpanded = !IsSidebarExpanded; BodyExpanded = !BodyExpanded; })" />
                     <RadzenLabel Text="RSS Feed Reader" Style="font-weight:900;" />
                 </div>
             </div>
         </ChildContent>
     </RadzenHeader>
-    <RadzenBody @ref="@body0" @bind-Expanded="@bodyExpanded">
+    <RadzenBody @ref="@Body0" @bind-Expanded="@BodyExpanded">
         <ChildContent>
             <RadzenContentContainer Name="main">
                 <div class="container-fluid">
@@ -25,7 +25,7 @@
                         <div class="col-12 pt-4 pb-5 px-3 px-lg-5">
                             @Body
                             <p class="mt-5 md-3 text-center">
-                                <RadzenLabel Text="@footer" />
+                                <RadzenLabel Text="@Footer" />
                             </p>
                         </div>
                     </div>
@@ -37,10 +37,10 @@
 </RadzenLayout>
 
 @code {
-    private RadzenBody? body0;
+    private RadzenBody? Body0;
     private bool IsSidebarExpanded = false;
-    private bool bodyExpanded = true;
-    private string? footer = $"Copyright © {DateTime.Now.Year} RSS Feed Reader. All Rights Reserved.";
+    private bool BodyExpanded = true;
+    private string? Footer = $"Copyright © {DateTime.Now.Year} RSS Feed Reader. All Rights Reserved.";
 
     private async Task PanelMenuClick(MenuItemEventArgs args)
     {

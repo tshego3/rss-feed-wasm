@@ -1,4 +1,4 @@
-﻿<RadzenSidebar @ref="@sidebar0" @bind-Expanded="@IsSidebarExpanded" Responsive="false" class="sidebar">
+﻿<RadzenSidebar @ref="@Sidebar0" @bind-Expanded="@IsSidebarExpanded" Responsive="false" class="sidebar">
     <ChildContent>
         <RadzenPanelMenu>
             <RadzenPanelMenuItem Text="TechCrunch" Path="/" Icon="rss_feed" />
@@ -32,5 +32,5 @@
     [Parameter]
     public bool IsSidebarExpanded { get; set; }
 
-    private RadzenSidebar? sidebar0;
+    private RadzenSidebar? Sidebar0;
 }

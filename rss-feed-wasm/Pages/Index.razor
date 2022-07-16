@@ -16,12 +16,16 @@
 else
 {
     <div class="row">
-        @foreach (XmlNodeList node in _XmlNodeList)
+        @foreach (XmlNode node in _XmlNodeList)
         {
-            @* <div class="col">
-    <h5><a href="@node.InnerText"><strong>@node["temp_f"].InnerText</strong></a></h5>
-    <p><?= $entry->description ?></p>
-    </div>*@
+            <div class="col">
+                <h5><a href="@node.SelectSingleNode("link").InnerText"><strong>@node.SelectSingleNode("title").InnerText</strong></a></h5>
+                @if(node.SelectSingleNode("image") != null && !string.IsNullOrEmpty(node.SelectSingleNode("image").InnerText))
+                {
+                    <img src="@node.SelectSingleNode("image").InnerText" class="rss-img" onerror="this.onerror=null; this.src='/assets/imgs/card-image.svg'" alt="...">
+                }
+                <p>@node.SelectSingleNode("description").InnerText</p>
+            </div>
         }
     </div>
 }
@@ -34,7 +38,6 @@ else
     private RssFeedModel? RssFeed { get; set; }
     private MemoryStream? memoryStream { get; set; }
     private XmlDocument? _XmlDocument = new XmlDocument();
-    private XmlElement? _XmlElement { get; set; }
     private XmlNodeList? _XmlNodeList { get; set; }
 
     protected override async Task OnInitializedAsync()
@@ -42,18 +45,10 @@ else
         RssFeeds = await Http.GetFromJsonAsync<RssFeedModel[]>("data/rss-feeds.json");
         RssFeed = RssFeeds.Where(rf => rf.Id == (Id == 0 ? 0 : Id)).FirstOrDefault();
 
-        var request = new HttpRequestMessage(HttpMethod.Get, RssFeed.Url);
-        request.SetBrowserRequestMode(BrowserRequestMode.NoCors);
-        request.SetBrowserRequestCache(BrowserRequestCache.NoCache);
-        var response = await Http.SendAsync(request);
-        var content = await response.Content.ReadAsStringAsync();
-        Console.WriteLine(content);
-        //Http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/xml"));
-        //var stream = await Http.GetStreamAsync(RssFeed.Url);
-
-        //_XmlDocument.Load(RssFeed.Url);
-        //_XmlElement = _XmlDocument.DocumentElement;
-        //_XmlNodeList = _XmlElement.SelectNodes("rss/channel/item");
+        Http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/xml"));
+        var stream = await Http.GetStreamAsync($"https://api.codetabs.com/v1/proxy/?quest={RssFeed.Url}");
+        _XmlDocument.Load(stream);
+        _XmlNodeList = _XmlDocument.SelectNodes("//channel/item");
     }
 
     public class RssFeedModel
