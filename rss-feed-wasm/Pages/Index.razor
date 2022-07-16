@@ -1,9 +1,62 @@
 ﻿@page "/"
+@page "/{Id:int}"
+
+@using System.Xml
+@inject HttpClient Http
+@inject IJSRuntime JSRuntime
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+@if (_XmlNodeList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+        @foreach (XmlNodeList node in _XmlNodeList)
+        {
+            @* <div class="col">
+    <h5><a href="@node.InnerText"><strong>@node["temp_f"].InnerText</strong></a></h5>
+    <p><?= $entry->description ?></p>
+    </div>*@
+        }
+    </div>
+}
 
-Welcome to your new app.
+@code {
+    [Parameter]
+    public int Id { get; set; }
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+    private RssFeedModel[]? RssFeeds { get; set; }
+    private RssFeedModel? RssFeed { get; set; }
+    private MemoryStream memoryStream { get; set; }
+    private XmlDocument? _XmlDocument = new XmlDocument();
+    private XmlElement? _XmlElement { get; set; }
+    private XmlNodeList? _XmlNodeList { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        RssFeeds = await Http.GetFromJsonAsync<RssFeedModel[]>("data/rss-feeds.json");
+        RssFeed = RssFeeds.Where(rf => rf.Id == (Id == 0 ? 0 : Id)).FirstOrDefault();
+
+        var request = new HttpRequestMessage(HttpMethod.Get, RssFeed.Url);
+        request.SetBrowserRequestMode(BrowserRequestMode.NoCors);
+        request.SetBrowserRequestCache(BrowserRequestCache.Default); //optional
+        //Http.BaseAddress = new Uri("https://goog");
+        var response = await Http.SendAsync(request);
+         var content = await response.Content.ReadAsStringAsync();
+        //var stream = await Http.GetStreamAsync(RssFeed.Url);
+
+        //_XmlDocument.Load(RssFeed.Url);
+        //_XmlElement = _XmlDocument.DocumentElement;
+        //_XmlNodeList = _XmlElement.SelectNodes("rss/channel/item");
+    }
+
+    public class RssFeedModel
+    {
+        public int Id { get; set; }
+
+        public string? Url { get; set; }
+    }
+}
