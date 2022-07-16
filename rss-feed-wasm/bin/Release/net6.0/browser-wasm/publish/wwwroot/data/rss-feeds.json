@@ -22,5 +22,49 @@
   {
     "id": 5,
     "url": "https://www.wired.com/feed/rss"
+  },
+  {
+    "id": 6,
+    "url": "https://www.wrc.com/templates/generated/1/raw/en.xml"
+  },
+  {
+    "id": 7,
+    "url": "https://www.ufc.com/rss/news/"
+  },
+  {
+    "id": 8,
+    "url": "https://www.espn.com/espn/rss/soccer/news/"
+  },
+  {
+    "id": 9,
+    "url": "https://www.espn.com/espn/rss/rpm/news/"
+  },
+  {
+    "id": 10,
+    "url": "https://distrowatch.com/news/dw.xml"
+  },
+  {
+    "id": 11,
+    "url": "https://www.nasa.gov/rss/dyn/lg_image_of_the_day.rss"
+  },
+  {
+    "id": 12,
+    "url": "https://www.nasa.gov/rss/dyn/breaking_news.rss"
+  },
+  {
+    "id": 13,
+    "url": "https://www.runtastic.com/blog/en/category/cardio/feed/"
+  },
+  {
+    "id": 14,
+    "url": "https://www.runtastic.com/blog/en/category/daily-habits/feed/"
+  },
+  {
+    "id": 15,
+    "url": "https://www.runtastic.com/blog/en/category/nutrition/feed/"
+  },
+  {
+    "id": 16,
+    "url": "https://www.runtastic.com/blog/en/category/strength/feed/"
   }
 ]
