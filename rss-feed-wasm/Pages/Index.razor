@@ -49,6 +49,7 @@ else
         var stream = await Http.GetStreamAsync($"https://api.codetabs.com/v1/proxy/?quest={RssFeed.Url}");
         _XmlDocument.Load(stream);
         _XmlNodeList = _XmlDocument.SelectNodes("//channel/item");
+        StateHasChanged();
     }
 
     public class RssFeedModel

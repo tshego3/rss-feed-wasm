@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "L2s2qneu0Jv0BttcJhKtOW8HeGBkdvHN4WwmXUZNcuk=",
+  "Hash": "uORMh4QzqJIFxig7zyjnKx6GO9KlLR4JqQ06JD//3BA=",
   "Source": "rss-feed-wasm",
   "BasePath": "/",
   "Mode": "Root",
@@ -7427,6 +7427,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\_redirects"
+    },
+    {
+      "Identity": "D:\\Users\\source\\repos\\rss-feed-wasm\\rss-feed-wasm\\wwwroot\\assets\\imgs\\card-image.svg",
+      "SourceId": "rss-feed-wasm",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Users\\source\\repos\\rss-feed-wasm\\rss-feed-wasm\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "assets/imgs/card-image.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\imgs\\card-image.svg"
     },
     {
       "Identity": "D:\\Users\\source\\repos\\rss-feed-wasm\\rss-feed-wasm\\wwwroot\\css\\app.css",
