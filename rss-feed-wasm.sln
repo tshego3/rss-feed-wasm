@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rss-feed-wasm", "rss-feed-wasm\rss-feed-wasm.csproj", "{A76E321C-E02B-4180-89D4-9203BCEAE271}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A76E321C-E02B-4180-89D4-9203BCEAE271}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A76E321C-E02B-4180-89D4-9203BCEAE271}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A76E321C-E02B-4180-89D4-9203BCEAE271}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A76E321C-E02B-4180-89D4-9203BCEAE271}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {55658A02-7597-4625-9B35-7915CBCD1897}
+	EndGlobalSection
+EndGlobal

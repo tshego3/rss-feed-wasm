@@ -1,0 +1,18 @@
+﻿@inject HttpClient Http
+@inject DialogService DialogService
+
+<RadzenSidebar @ref="@sidebar0" @bind-Expanded="@IsSidebarExpanded" Responsive="false" class="sidebar">
+    <ChildContent>
+        <RadzenPanelMenu>
+            <RadzenPanelMenuItem Text="Home" Path="/" Icon="home" />
+            <RadzenPanelMenuItem Text="Gallery" Path="https://www.instagram.com/eoifilms/" Target="_blank" Icon="photo_library" />
+        </RadzenPanelMenu>
+    </ChildContent>
+</RadzenSidebar>
+
+@code {
+    [Parameter]
+    public bool IsSidebarExpanded { get; set; }
+
+    private RadzenSidebar? sidebar0;
+}
