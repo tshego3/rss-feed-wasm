@@ -43,7 +43,6 @@ else
         var request = new HttpRequestMessage(HttpMethod.Get, RssFeed.Url);
         request.SetBrowserRequestMode(BrowserRequestMode.NoCors);
         request.SetBrowserRequestCache(BrowserRequestCache.Default); //optional
-        //Http.BaseAddress = new Uri("https://goog");
         var response = await Http.SendAsync(request);
          var content = await response.Content.ReadAsStringAsync();
         //var stream = await Http.GetStreamAsync(RssFeed.Url);
