@@ -4,6 +4,7 @@
 @using System.Xml
 @using System.Net.Http
 @using System.Net.Http.Headers
+@using Newtonsoft.Json
 @inject HttpClient Http
 @inject IJSRuntime JSRuntime
 
@@ -15,16 +16,6 @@
 }
 else
 {
-    <style>
-        .rss-img {
-            width: 30vw !important;
-            height: auto !important;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-    </style>
-
     <div class="row">
         @foreach (XmlNode node in _XmlNodeList)
         {
@@ -34,13 +25,9 @@ else
                 {
                     <img src="@node.SelectSingleNode("image").InnerText" class="rss-img" onerror="this.onerror=null; this.src='/assets/imgs/card-image.svg'" alt="...">
                 }
-                @*@if (node.SelectSingleNode("media:thumbnail url") != null && !string.IsNullOrEmpty(node.SelectSingleNode("media:thumbnail url").InnerText))
-        {
-        <img src="@node.SelectSingleNode("media:thumbnail url").InnerText" class="rss-img" onerror="this.onerror=null; this.src='/assets/imgs/card-image.svg'" alt="...">
-        }*@
                 else
                 {
-                    @if (Id != 1)
+                    @if (Id != 1 || Id != 13 || Id != 14 || Id != 15 || Id != 16 )
                     {
                         <img src="/assets/imgs/card-image.svg" class="rss-img" alt="..." />
                     }
@@ -91,4 +78,6 @@ else
 
         public string? Url { get; set; }
     }
+
+
 }
