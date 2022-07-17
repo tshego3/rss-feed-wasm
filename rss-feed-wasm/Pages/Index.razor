@@ -15,14 +15,35 @@
 }
 else
 {
+    <style>
+        .rss-img {
+            width: 30vw !important;
+            height: auto !important;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+
     <div class="row">
         @foreach (XmlNode node in _XmlNodeList)
         {
             <div class="col">
                 <h5><a href="@node.SelectSingleNode("link").InnerText"><strong>@node.SelectSingleNode("title").InnerText</strong></a></h5>
-                @if(node.SelectSingleNode("image") != null && !string.IsNullOrEmpty(node.SelectSingleNode("image").InnerText))
+                @if (node.SelectSingleNode("image") != null && !string.IsNullOrEmpty(node.SelectSingleNode("image").InnerText))
                 {
                     <img src="@node.SelectSingleNode("image").InnerText" class="rss-img" onerror="this.onerror=null; this.src='/assets/imgs/card-image.svg'" alt="...">
+                }
+                @*@if (node.SelectSingleNode("media:thumbnail url") != null && !string.IsNullOrEmpty(node.SelectSingleNode("media:thumbnail url").InnerText))
+        {
+        <img src="@node.SelectSingleNode("media:thumbnail url").InnerText" class="rss-img" onerror="this.onerror=null; this.src='/assets/imgs/card-image.svg'" alt="...">
+        }*@
+                else
+                {
+                    @if (Id != 1)
+                    {
+                        <img src="/assets/imgs/card-image.svg" class="rss-img" alt="..." />
+                    }
                 }
                 @StringToHtml(node.SelectSingleNode("description").InnerText)
             </div>
@@ -36,24 +57,30 @@ else
 
     private RssFeedModel[]? RssFeeds { get; set; }
     private RssFeedModel? RssFeed { get; set; }
-    private MemoryStream? _MemoryStream { get; set; }
     private XmlDocument? _XmlDocument = new XmlDocument();
     private XmlNodeList? _XmlNodeList { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        RssFeeds = await Http.GetFromJsonAsync<RssFeedModel[]>("data/rss-feeds.json");
-        RssFeed = RssFeeds.Where(rf => rf.Id == (Id == 0 ? 0 : Id)).FirstOrDefault();
-
-        _MemoryStream = await Http.GetStreamAsync($"https://api.codetabs.com/v1/proxy/?quest={RssFeed.Url}");
-        if (_MemoryStream != null)
+        try
         {
-            _XmlDocument.Load(_MemoryStream);
-            _XmlNodeList = _XmlDocument.SelectNodes("//channel/item");
+            RssFeeds = await Http.GetFromJsonAsync<RssFeedModel[]>("data/rss-feeds.json");
+            RssFeed = RssFeeds.Where(rf => rf.Id == (Id == 0 ? 0 : Id)).FirstOrDefault();
+
+            var _MemoryStream = await Http.GetStreamAsync($"https://api.codetabs.com/v1/proxy/?quest={RssFeed.Url}");
+            if (_MemoryStream != null)
+            {
+                _XmlDocument.Load(_MemoryStream);
+                _XmlNodeList = _XmlDocument.SelectNodes("//channel/item");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
         }
     }
 
-    RenderFragment StringToHtml(string htmlString)
+    private RenderFragment StringToHtml(string htmlString)
     {
         return new RenderFragment(rf => rf.AddMarkupContent(0, htmlString));
     }

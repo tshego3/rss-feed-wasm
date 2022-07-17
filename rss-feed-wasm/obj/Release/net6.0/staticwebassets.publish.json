@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nB4zLVRzx8nqGGdg8zmtK5OBQWJZxLgzg/mjK6OGDKM=",
+  "Hash": "uIXsV2NZyfgmT13T2OzeCZjBCpdStVhVEtug2ewSIac=",
   "Source": "rss-feed-wasm",
   "BasePath": "/",
   "Mode": "Root",
@@ -1103,6 +1103,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\Users\\source\\repos\\rss-feed-wasm\\rss-feed-wasm\\obj\\Release\\net6.0\\linked\\Microsoft.Extensions.Configuration.dll"
+    },
+    {
+      "Identity": "D:\\Users\\source\\repos\\rss-feed-wasm\\rss-feed-wasm\\obj\\Release\\net6.0\\compress\\85kuzUkZ.br",
+      "SourceId": "rss-feed-wasm",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Users\\source\\repos\\rss-feed-wasm\\rss-feed-wasm\\obj\\Release\\net6.0\\browser-wasm\\PubTmp\\Out\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/System.Console.dll.br",
+      "AssetKind": "Publish",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\Users\\source\\repos\\rss-feed-wasm\\rss-feed-wasm\\obj\\Release\\net6.0\\linked\\System.Console.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "br",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "D:\\Users\\source\\repos\\rss-feed-wasm\\rss-feed-wasm\\obj\\Release\\net6.0\\linked\\System.Console.dll"
+    },
+    {
+      "Identity": "D:\\Users\\source\\repos\\rss-feed-wasm\\rss-feed-wasm\\obj\\Release\\net6.0\\compress\\85kuzUkZ.gz",
+      "SourceId": "rss-feed-wasm",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Users\\source\\repos\\rss-feed-wasm\\rss-feed-wasm\\obj\\Release\\net6.0\\browser-wasm\\PubTmp\\Out\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/System.Console.dll.gz",
+      "AssetKind": "Publish",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\Users\\source\\repos\\rss-feed-wasm\\rss-feed-wasm\\obj\\Release\\net6.0\\linked\\System.Console.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "D:\\Users\\source\\repos\\rss-feed-wasm\\rss-feed-wasm\\obj\\Release\\net6.0\\linked\\System.Console.dll"
     },
     {
       "Identity": "D:\\Users\\source\\repos\\rss-feed-wasm\\rss-feed-wasm\\obj\\Release\\net6.0\\compress\\87vuWjdD.br",
@@ -3670,6 +3704,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "obj\\Release\\net6.0\\linked\\System.ComponentModel.TypeConverter.dll"
+    },
+    {
+      "Identity": "D:\\Users\\source\\repos\\rss-feed-wasm\\rss-feed-wasm\\obj\\Release\\net6.0\\linked\\System.Console.dll",
+      "SourceId": "rss-feed-wasm",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Users\\source\\repos\\rss-feed-wasm\\rss-feed-wasm\\obj\\Release\\net6.0\\browser-wasm\\PubTmp\\Out\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/System.Console.dll",
+      "AssetKind": "Publish",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "obj\\Release\\net6.0\\linked\\System.Console.dll"
     },
     {
       "Identity": "D:\\Users\\source\\repos\\rss-feed-wasm\\rss-feed-wasm\\obj\\Release\\net6.0\\linked\\System.Core.dll",
