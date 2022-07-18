@@ -5,6 +5,7 @@
 @using System.Net.Http
 @using System.Net.Http.Headers
 @using Newtonsoft.Json
+@using Newtonsoft.Json.Linq
 @inject HttpClient Http
 @inject IJSRuntime JSRuntime
 
@@ -21,16 +22,9 @@ else
         {
             <div class="col">
                 <h5><a href="@node.SelectSingleNode("link").InnerText"><strong>@node.SelectSingleNode("title").InnerText</strong></a></h5>
-                @if (node.SelectSingleNode("image") != null && !string.IsNullOrEmpty(node.SelectSingleNode("image").InnerText))
+                @if (Id != 1 && Id != 13 && Id != 14 && Id != 15 && Id != 16)
                 {
-                    <img src="@node.SelectSingleNode("image").InnerText" class="rss-img" onerror="this.onerror=null; this.src='/assets/imgs/card-image.svg'" alt="...">
-                }
-                else
-                {
-                    @if (Id != 1 || Id != 13 || Id != 14 || Id != 15 || Id != 16 )
-                    {
-                        <img src="/assets/imgs/card-image.svg" class="rss-img" alt="..." />
-                    }
+                    <img src="@GetImageUrl(node)" class="rss-img" alt="..." />
                 }
                 @StringToHtml(node.SelectSingleNode("description").InnerText)
             </div>
@@ -72,12 +66,71 @@ else
         return new RenderFragment(rf => rf.AddMarkupContent(0, htmlString));
     }
 
+    private string GetImageUrl(XmlNode xmlNode)
+    {
+        string result = "/assets/imgs/card-image.svg";
+
+        try
+        {
+            string jsonData = JsonConvert.SerializeXmlNode(xmlNode);
+            JObject jObect = JObject.Parse(jsonData);
+
+            try
+            {
+                if (!string.IsNullOrEmpty(jObect["item"]["image"].ToString()))
+                {
+                    result = jObect["item"]["image"].ToString();
+                }
+            }
+            catch
+            {
+
+            }
+            try
+            {
+                if (!string.IsNullOrEmpty(jObect["item"]["image"]["url"].ToString()))
+                {
+                    result = jObect["item"]["image"]["url"].ToString();
+                }
+            }
+            catch
+            {
+
+            }
+            try
+            {
+                if (!string.IsNullOrEmpty(jObect["item"]["enclosure"]["@url"].ToString()))
+                {
+                    result = jObect["item"]["enclosure"]["@url"].ToString();
+                }
+            }
+            catch
+            {
+
+            }
+            try
+            {
+                if (!string.IsNullOrEmpty(jObect["item"]["media:thumbnail"]["@url"].ToString()))
+                {
+                    result = jObect["item"]["media:thumbnail"]["@url"].ToString();
+                }
+            }
+            catch
+            {
+
+            }
+        }
+        catch
+        {
+
+        }
+        return result;
+    }
+
     public class RssFeedModel
     {
         public int Id { get; set; }
 
         public string? Url { get; set; }
     }
-
-
 }
