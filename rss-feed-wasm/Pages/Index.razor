@@ -24,9 +24,17 @@ else
                 <h5><a href="@node.SelectSingleNode("link").InnerText"><strong>@node.SelectSingleNode("title").InnerText</strong></a></h5>
                 @if (Id != 1 && Id != 13 && Id != 14 && Id != 15 && Id != 16)
                 {
-                    <img src="@GetImageUrl(node)" class="rss-img" alt="..." />
+                    @StringToHtml(GetImageUrl(node))
                 }
-                @StringToHtml(node.SelectSingleNode("description").InnerText)
+                <br />
+                @if ( Id != 7)
+                {
+                    @StringToHtml(node.SelectSingleNode("description").InnerText)
+                }
+                else
+                {
+                    @StringToHtml(GetDescription(node))
+                }
             </div>
         }
     </div>
@@ -66,10 +74,9 @@ else
         return new RenderFragment(rf => rf.AddMarkupContent(0, htmlString));
     }
 
-    private string GetImageUrl(XmlNode xmlNode)
+    private string GetDescription(XmlNode xmlNode)
     {
-        string result = "/assets/imgs/card-image.svg";
-
+        string value = "No Description";
         try
         {
             string jsonData = JsonConvert.SerializeXmlNode(xmlNode);
@@ -77,9 +84,9 @@ else
 
             try
             {
-                if (!string.IsNullOrEmpty(jObect["item"]["image"].ToString()))
+                if (!string.IsNullOrEmpty(xmlNode.SelectSingleNode("description").InnerText))
                 {
-                    result = jObect["item"]["image"].ToString();
+                    value = xmlNode.SelectSingleNode("description").InnerText;
                 }
             }
             catch
@@ -88,31 +95,9 @@ else
             }
             try
             {
-                if (!string.IsNullOrEmpty(jObect["item"]["image"]["url"].ToString()))
+                if (!string.IsNullOrEmpty(jObect["item"]["content:encoded"].ToString()))
                 {
-                    result = jObect["item"]["image"]["url"].ToString();
-                }
-            }
-            catch
-            {
-
-            }
-            try
-            {
-                if (!string.IsNullOrEmpty(jObect["item"]["enclosure"]["@url"].ToString()))
-                {
-                    result = jObect["item"]["enclosure"]["@url"].ToString();
-                }
-            }
-            catch
-            {
-
-            }
-            try
-            {
-                if (!string.IsNullOrEmpty(jObect["item"]["media:thumbnail"]["@url"].ToString()))
-                {
-                    result = jObect["item"]["media:thumbnail"]["@url"].ToString();
+                    value = jObect["item"]["content:encoded"].ToString();
                 }
             }
             catch
@@ -124,6 +109,69 @@ else
         {
 
         }
+
+        return value;
+    }
+
+    private string GetImageUrl(XmlNode xmlNode)
+    {
+        string value = "/assets/imgs/card-image.svg";
+        try
+        {
+            string jsonData = JsonConvert.SerializeXmlNode(xmlNode);
+            JObject jObect = JObject.Parse(jsonData);
+
+            try
+            {
+                if (!string.IsNullOrEmpty(jObect["item"]["image"].ToString()))
+                {
+                    value = jObect["item"]["image"].ToString();
+                }
+            }
+            catch
+            {
+
+            }
+            try
+            {
+                if (!string.IsNullOrEmpty(jObect["item"]["image"]["url"].ToString()))
+                {
+                    value = jObect["item"]["image"]["url"].ToString();
+                }
+            }
+            catch
+            {
+
+            }
+            try
+            {
+                if (!string.IsNullOrEmpty(jObect["item"]["enclosure"]["@url"].ToString()))
+                {
+                    value = jObect["item"]["enclosure"]["@url"].ToString();
+                }
+            }
+            catch
+            {
+
+            }
+            try
+            {
+                if (!string.IsNullOrEmpty(jObect["item"]["media:thumbnail"]["@url"].ToString()))
+                {
+                    value = jObect["item"]["media:thumbnail"]["@url"].ToString();
+                }
+            }
+            catch
+            {
+
+            }
+        }
+        catch
+        {
+
+        }
+
+        string result = $"<img src=\"{value}\" class=\"mx-auto\" alt=\"...\" />";
         return result;
     }
 
